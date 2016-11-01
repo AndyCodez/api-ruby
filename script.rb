@@ -1,10 +1,9 @@
-require 'open-uri'
+require 'rexml/document'
 
-kittens = open('http://placekitten.com/200/300')
+file = File.open('pets.txt')
+doc = REXML::Document.new file
+file.close
 
-f = File.open('kittens.jpg','w')
-
-kittens.each do |kitten|
-  f.write(kitten)
+doc.elements.each("pets/pet/name") do |element|
+  puts element
 end
-f.close
