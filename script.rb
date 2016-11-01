@@ -1,9 +1,10 @@
-require 'rexml/document'
+require 'json'
 
-file = File.open('pets.txt')
-doc = REXML::Document.new file
+file = File.open('pets.txt', "r")
+doc = ""
+file.each do |line|
+  doc << line
+end
 file.close
 
-doc.elements.each("pets/pet/name") do |element|
-  puts element
-end
+puts JSON.parse(doc)
