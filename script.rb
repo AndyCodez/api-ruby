@@ -1,8 +1,10 @@
 require 'open-uri'
 
-kittens = open('http://placekittens.com/')
-response_status = kittens.status
-response_body = kittens.read[559, 441]
+kittens = open('http://placekitten.com/200/300')
 
-puts response_status
-puts response_body
+f = File.open('kittens.jpg','w')
+
+kittens.each do |kitten|
+  f.write(kitten)
+end
+f.close
